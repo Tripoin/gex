@@ -1,0 +1,24 @@
+Note:
+
+Pricing:
+	- Tab Create New status != revisi dan step_role != 2
+	- Tab Jobsheet status != revisi dan step_role = 2
+	
+	yang belum
+	- Update vendor reimbursment
+
+Invoice Receivable:
+	- Tab Create New status = completed dan step_role != 3
+	- Tab Invoice Invoice::where('type', 'receivable')
+
+	Alur:
+	- Klik Tab Create New
+	- Klik code job
+	- Pilih Charge (bill to, term, tax, dan currency harus sama)
+	- Klik Create
+	- Input date, bank account, references
+		Proses Input:
+			- Generate Code Invoice
+			- Input ke tabel Invoice
+			- Update Invoice_id dan Code Invoice di tabel Receivable
+			- redirect ke detail Invoice yang telah dibuat
