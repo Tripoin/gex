@@ -64,6 +64,8 @@
 											            	$pod_id = App\MasterPort::find($jobsheet->pod_id);
 											            	$cek = App\Invoice::where('jobsheet_id', $jobsheet->id)->count();
 															$rcsCount = App\RC::where('jobsheet_id', $jobsheet->getKey())->count();
+															$reqCount = App\RequestModel::where('jobsheet_id', $jobsheet->getKey())->where('user_id',  Auth::user()->getKey())->count();
+														if($rcsCount != $reqCount){
 														@endphp
 												         <tr>
 												          	<td>{{ $no }}</td>  
@@ -82,7 +84,10 @@
 																 <a href="{{ route('marketing.request-rc.detail-jobsheet', ['id'=>$jobsheet->id]) }}"><i class="fa fa-pencil"></i></a>
 															 </td>
 												          </tr>
-												          <?php $no++; ?>  
+														@php
+														$no++;
+														}
+														@endphp
 										          	@endforeach
 										        </tbody>  
 	                                        </table>
