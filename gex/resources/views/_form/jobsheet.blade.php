@@ -11,7 +11,7 @@
         <input type="hidden" name="status" value="uncompleted">   
         <div class="col-md-4">
             <div class="form-group @if($errors->first('customer_id')) has-error @endif ">
-                <label class="control-label col-sm-4">CUSTOMER</label>
+                <label class="control-label col-sm-4">CUSTOMER*</label>
                 <div class="col-sm-8">
                    
                     {!! Form::select(
@@ -26,34 +26,50 @@
             </div>
 
             <div class="form-group @if($errors->first('poo_id')) has-error @endif">
-                <label class="control-label col-sm-4">ORIGIN</label>
+                <label class="control-label col-sm-4">ORIGIN*</label>
                 <div class="col-sm-8">
-
-                    {!! Form::select(
+                    <select class="form-control input-sm options_doc" id="poo" required="required">
+                        <option value=""></option>
+                        @php
+                        $listPort = App\MasterPort::where('type','origin')->get();
+                        @endphp
+                        @foreach($listPort as $list)
+                            <option value="{{$list->id}}">{{$list->city . ' - ' . $list->nick_name}}</option>
+                        @endforeach
+                    </select>
+                    {{--{!! Form::select(
                         'poo_id', 
                         [''=>'']+App\MasterPort::where('type','origin')->pluck('city','id')->all(),
                         old('poo_id'), 
                         ['class'=>'form-control input-sm options_doc','id'=>'poo','required']) 
-                    !!}
+                    !!}--}}
 
                     <div class="error">{!! $errors->first('poo_id') !!}</div>
                 </div>
             </div>
             <div class="form-group  @if($errors->first('pod_id')) has-error @endif">
-                <label class="control-label col-sm-4">DESTINATION</label>
+                <label class="control-label col-sm-4">DESTINATION*</label>
                 <div class="col-sm-8">
-
-                    {!! Form::select(
+                    <select class="form-control input-sm options_doc" id="poo" required="required">
+                        <option value=""></option>
+                        @php
+                        $listPort = App\MasterPort::where('type','destination')->get();
+                        @endphp
+                        @foreach($listPort as $list)
+                            <option value="{{$list->id}}">{{$list->city . ' - ' . $list->nick_name}}</option>
+                        @endforeach
+                    </select>
+                    {{--{!! Form::select(
                         'pod_id', 
                         [''=>'']+App\MasterPort::where('type','destination')->pluck('city','id')->all(),
                         old('pod_id'), 
                         ['class'=>'form-control input-sm options_doc','id'=>'pod','required']) 
-                    !!}
+                    !!}--}}
 
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-4">FREIGHT TYPE</label>
+                <label class="control-label col-sm-4">FREIGHT TYPE*</label>
                 <div class="col-sm-8">
 
                     {!! Form::select(
@@ -77,7 +93,7 @@
                 </div>
             </div>
             <div class="form-group partymeas @if($errors->first('partymeas') || $errors->first('party_unit_id')) has-error @endif">
-                <label class="control-label col-sm-4">PARTY/MEAS</label>
+                <label class="control-label col-sm-4">PARTY/MEAS*</label>
                 <div class="col-sm-8 clearfix">
                     
                     {!! Form::text('partymeas',old('partymeas'),['class'=>'form-control input-sm text-big text-number','placeholder'=>'Amount','required']) !!}
@@ -97,7 +113,7 @@
         </div>
         <div class="col-md-4">
             <div class="form-group @if($errors->first('marketing')) has-error @endif">
-                <label class="control-label col-sm-4">MARKETING</label>
+                <label class="control-label col-sm-4">MARKETING*</label>
                 <div class="col-sm-8">
 
                     {!! Form::select(
@@ -149,7 +165,7 @@
                 </div>
             </div>
             <div class="form-group @if($errors->first('etd')) has-error @endif">
-                <label class="control-label col-sm-4">ETD</label>
+                <label class="control-label col-sm-4">ETD*</label>
                 <div class="col-sm-8">
                     
                     @if(Request::path() != 'operation/jobsheet/uncreated')
@@ -162,7 +178,7 @@
                 </div>
             </div>
             <div class="form-group @if($errors->first('eta')) has-error @endif">
-                <label class="control-label col-sm-4">ETA</label>
+                <label class="control-label col-sm-4">ETA*</label>
                 <div class="col-sm-8">
                     
                     @if(Request::path() != 'operation/jobsheet/uncreated')
