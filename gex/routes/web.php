@@ -389,7 +389,7 @@ Route::group(['middleware' => ['web','auth']], function ()
         include "arz/arz_manager.php";
 
         // temp disable
-        if( 1==2 ) {
+        //if( 1==2 ) {
             /* Approve Payable */
             Route::get('/payment', [
                 'as' => 'listpayment',
@@ -467,7 +467,7 @@ Route::group(['middleware' => ['web','auth']], function ()
                 'as'    => 'approverec.decline',
                 'uses'  => '_ManagerController@decline'
             ]);
-        }
+        //}
     });
 
     Route::group(['prefix'=>'pajak'], function ()
