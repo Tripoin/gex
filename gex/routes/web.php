@@ -258,6 +258,12 @@ Route::group(['middleware' => ['web','auth']], function ()
                 'uses'  => '_PayableController@payment_payable'
             ]);
 
+            Route::get('/payment/terms', [
+                // 'as'    => 'payable.payment.terms',
+                'as'    => 'request.payable.payable_terms',
+                'uses'  => '_PayableController@payment_terms'
+            ]);
+
             Route::get('/payment/rc', [
                 'as'    => 'payable.payment.rc',
                 'uses'  => '_PayableController@payment_rc'

@@ -37,7 +37,7 @@ class _PayableController extends Controller
 	public function jobsheet_index(Request $request, Datatables $datatables)
     {
         $jobsheets = JobSheet::where('status',['completed','uncompleted'])->get();
-        
+
         return view('jobsheet.index', compact('jobsheets'));
     }
 
@@ -87,7 +87,7 @@ class _PayableController extends Controller
         // $jobsheet->step_role = '2';
         // $jobsheet->save();
 
-        if ($jobsheet) 
+        if ($jobsheet)
         {
             //==============UPDATE PAYABLE============
             $payable_id = $request->payable_id;
@@ -99,12 +99,12 @@ class _PayableController extends Controller
             $currency   = $request->get('currency');
             $price      = $request->get('price');
 
-            for ($j=0; $j < count($charge); $j++) 
-            { 
-                if ($payable_id[$j] != 0) 
+            for ($j=0; $j < count($charge); $j++)
+            {
+                if ($payable_id[$j] != 0)
                 {
                     $payable = Payable::find($payable_id[$j]);
-                
+
                     if(!empty($charge[$j]))
                     {
                         $payable->user_id       = $user_id[$j];
@@ -151,12 +151,12 @@ class _PayableController extends Controller
 
             $rmb_id = $request->rmb_id;
             $vendor_id = $request->rmb_vendor_id;
-            
-            for ($i=0; $i < count($rmb_id); $i++) 
-            { 
-                if (!empty($vendor_id[$i])) 
+
+            for ($i=0; $i < count($rmb_id); $i++)
+            {
+                if (!empty($vendor_id[$i]))
                 {
-                    $rmb = Reimbursement::find($rmb_id[$i]);    
+                    $rmb = Reimbursement::find($rmb_id[$i]);
                     $rmb->rmb_vendor_id = $vendor_id[$i];
                     $rmb->save();
                 }
@@ -164,7 +164,7 @@ class _PayableController extends Controller
 
             // =====INPUT & EDIT RC======================================
             $rcs = RC::where('jobsheet_id', $jobsheet->id)->get();
-            
+
             $rc_id          = $request->rc_id;
             $rc_type        = $request->rc_type;
             $rc_document_id = $request->rc_document_id;
@@ -173,16 +173,16 @@ class _PayableController extends Controller
             $rc_unit_id     = $request->rc_unit_id;
             $rc_currency    = $request->rc_currency;
 
-            for ($a=0; $a < count($rc_document_id); $a++) 
-            { 
-                if ($rc_id[$a] != 0) 
+            for ($a=0; $a < count($rc_document_id); $a++)
+            {
+                if ($rc_id[$a] != 0)
                 {
                     $rc = RC::find($rc_id[$a]);
                     $rcparts=explode(",",$request->rc_price[$a]);
                     $rcparts=array_filter($rcparts);
                     $rc_price = (implode("",$rcparts));
 
-                    if (!empty($rc_document_id[$a])) 
+                    if (!empty($rc_document_id[$a]))
                     {
                         $rc->jobsheet_id      = $jobsheet->id;
                         $rc->rc_document_id   = $rc_document_id[$a];
@@ -198,7 +198,7 @@ class _PayableController extends Controller
                         $rc->delete();
                     }
                 } else {
-                    if (!empty($rc_document_id[$a])) 
+                    if (!empty($rc_document_id[$a]))
                     {
                         $rcparts=explode(",",$request->rc_price[$a]);
                         $rcparts=array_filter($rcparts);
@@ -254,7 +254,7 @@ class _PayableController extends Controller
         $jobsheet->status = 'revisi-'.$sender->role;
         $jobsheet->save();
 
-        return redirect()->route('payable.index');   
+        return redirect()->route('payable.index');
     }
 
     public function payment_payable(Request $request)
@@ -278,7 +278,7 @@ class _PayableController extends Controller
         if ($role == 'operation' || $role == 'pricing') {
             $jobsheet = JobSheet::find($id);
             $payables = RequestModel::where('jobsheet_id', $id)->where('status','requested')->where('type','!=','marketing')->get();
-            
+
             return view('payable._paymentcreated', compact('jobsheet','payables','roles'));
         } elseif ($role == 'marketing') {
             $jobsheet = JobSheet::find($id);
@@ -360,9 +360,9 @@ class _PayableController extends Controller
         $add_type = $request->add_type;
         $add_amount = $request->add_amount;
 
-        for ($y=0; $y < count($add_type) ; $y++) 
-        { 
-            if (!empty($add_type[$y])) 
+        for ($y=0; $y < count($add_type) ; $y++)
+        {
+            if (!empty($add_type[$y]))
             {
                 $type   = $add_type[$y];
 
@@ -382,9 +382,9 @@ class _PayableController extends Controller
         // ===================================================================================
         $payable_id = $request->payable_id;
         $rate       = $request->rate;
-        
+
         if ($roles == 'operation' || $roles == 'pricing') {
-            for ($x=0; $x < count($payable_id); $x++) 
+            for ($x=0; $x < count($payable_id); $x++)
             {
                 $parts=explode(",",$rate[$x]);
                 $parts=array_filter($parts);
@@ -400,7 +400,7 @@ class _PayableController extends Controller
                 $updaterequest->save();
             }
         } elseif ($roles == 'marketing') {
-            for ($x=0; $x < count($payable_id); $x++) 
+            for ($x=0; $x < count($payable_id); $x++)
             {
                 $parts=explode(",",$rate[$x]);
                 $parts=array_filter($parts);
@@ -420,7 +420,7 @@ class _PayableController extends Controller
 
         // =====INPUT & EDIT RC============================
         // $rcs = RC::where('jobsheet_id', $jobsheet->id)->get();
-        
+
         // $rc_document_id = $request->rc_document_id;
         // $rc_vendor_id   = $request->rc_vendor_id;
         // $rc_quantity    = $request->rc_quantity;
@@ -429,9 +429,9 @@ class _PayableController extends Controller
 
         // if($rcs->count() < 1)
         // {
-        //     for ($a=0; $a < count($rc_document_id); $a++) 
-        //     { 
-        //         if (!empty($rc_document_id[$a])) 
+        //     for ($a=0; $a < count($rc_document_id); $a++)
+        //     {
+        //         if (!empty($rc_document_id[$a]))
         //         {
         //             $rcparts=explode(",",$request->rc_price[$a]);
         //             $rcparts=array_filter($rcparts);
@@ -453,9 +453,9 @@ class _PayableController extends Controller
         // }else{
         //     DB::table('rc')->where('jobsheet_id', $jobsheet->id)->delete();
 
-        //     for ($a=0; $a < count($rc_document_id); $a++) 
-        //     { 
-        //         if (!empty($rc_document_id[$a])) 
+        //     for ($a=0; $a < count($rc_document_id); $a++)
+        //     {
+        //         if (!empty($rc_document_id[$a]))
         //         {
         //             $rcparts=explode(",",$request->rc_price[$a]);
         //             $rcparts=array_filter($rcparts);
@@ -507,7 +507,7 @@ class _PayableController extends Controller
             $payable = Payable::where('payment_id',$payment->id)->get();
             $paydoc = PaymentDoc::where('payment_id',$payment->id)->get();
             $sum_amount = PaymentDoc::where('payment_id',$payment->id)->sum('add_amount');
-    
+
             return view('payable._showpayment', compact('payment','payable','paydoc','sum_amount','roles'));
         } elseif ($role == 'marketing') {
             $payment = Payment::find($id);
@@ -542,7 +542,7 @@ class _PayableController extends Controller
     public function overpayment()
     {
         $invoicerec = invoice::where('status', 3)->get();
-        
+
         return view('receivable._index', compact('invoicerec'));
     }
 
@@ -577,7 +577,7 @@ class _PayableController extends Controller
         $id = $request->input('id');
         $date = $request->input('date');
 
-        for ($i=0; $i < count($id) ; $i++) { 
+        for ($i=0; $i < count($id) ; $i++) {
             $invoice = invoice::find($id[$i]);
             $invoice->date_request = $date[$i];
             $invoice->save();
@@ -588,8 +588,15 @@ class _PayableController extends Controller
 
     public function listoverpayment(Request $request) {
         $invoicerec = invoice::where('date_request','>',0)->get();
-        
+
         return view('receivable._index', compact('invoicerec'));
+    }
+
+    public function payment_terms(Request $request)
+    {
+        $jobsheets = RequestModel::where('status','approved')->where('type','!=','marketing')->select('jobsheet_id','type')->distinct()->get();
+
+        return view('payable.terms.index', compact('jobsheets'));
     }
 
     /* Moved to ARZ */
