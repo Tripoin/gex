@@ -223,6 +223,10 @@ Route::group(['middleware' => ['web','auth']], function ()
     {
         Route::group(['prefix'=>'jobsheet'], function ()
         {
+            Route::get('/create_new', [
+                'as'    => 'payable.jobsheet.create_new',
+                'uses'  => '_PayableController@jobsheet_createnew'
+            ]);
             Route::get('/index', [
                 'as'    => 'payable.jobsheet.index',
                 'uses'  => '_PayableController@jobsheet_index'
@@ -395,7 +399,7 @@ Route::group(['middleware' => ['web','auth']], function ()
         include "arz/arz_manager.php";
 
         // temp disable
-        if( 1==2 ) {
+        //if( 1==2 ) {
             /* Approve Payable */
             Route::get('/payment', [
                 'as' => 'listpayment',
@@ -473,7 +477,7 @@ Route::group(['middleware' => ['web','auth']], function ()
                 'as'    => 'approverec.decline',
                 'uses'  => '_ManagerController@decline'
             ]);
-        }
+        //}
     });
 
     Route::group(['prefix'=>'pajak'], function ()

@@ -42,6 +42,7 @@ class _ReceivableController extends Controller
 
 	public function show(Request $request, $id, $type)
     {
+            
     	if($type == 'receivable') {
 	        $invoice = Invoice::find($id);
 	        $jobsheet = JobSheet::find($invoice->jobsheet_id);

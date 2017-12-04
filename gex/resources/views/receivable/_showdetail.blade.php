@@ -71,15 +71,26 @@
                     <td>:</td>
                     <td class="text-right">{{date('d F Y', strtotime($invoice->tanggal))}}</td>
                 </tr>
+                <?php
+                $receipt_date = '-';
+                if(!empty($invoice->receipt_date)){
+                    $receipt_date = date('d F Y', strtotime($invoice->receipt_date));
+                }
+                
+                $due_date = '-';
+                if(!empty($invoice->due_date)){
+                    $due_date = date('d F Y', strtotime($invoice->due_date));
+                }
+                ?>
                 <tr>
                     <td>RECEIVED DATE</td>
                     <td>:</td>
-                    <td class="text-right">-</td>
+                    <td class="text-right">{{$receipt_date}}</td>
                 </tr>
                 <tr>
                     <td>DUE DATE</td>
                     <td>:</td>
-                    <td class="text-right">-</td>
+                    <td class="text-right">{{$due_date}}</td>
                 </tr>
             </tbody>
         </table>

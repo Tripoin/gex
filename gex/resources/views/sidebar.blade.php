@@ -193,6 +193,7 @@
                         <a href="#jobsheet" data-toggle="collapse" class="collapsed"><i class="lnr lnr-book"></i> <span>Job Sheet</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
                         <div id="jobsheet" class="collapse ">
                             <ul class="nav">
+                                
                                 <li><a href="{{ route('payable.index') }}" class="">Job Sheet</a></li>
                             </ul>
                         </div>
