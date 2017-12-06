@@ -396,6 +396,38 @@ Route::group(['middleware' => ['web','auth']], function ()
 
     Route::group(['prefix'=>'manager'], function ()
     {
+      Route::group(['prefix'=>'jobsheet'], function ()
+      {
+          Route::get('/create_new', [
+              'as'    => 'manager.jobsheet.create_new',
+              'uses'  => '_ManagerController@jobsheet_createnew'
+          ]);
+          Route::get('/index', [
+              'as'    => 'manager.jobsheet.index',
+              'uses'  => '_ManagerController@jobsheet_index'
+          ]);
+
+          Route::get('/{job_id}/show', [
+              'as'    => 'manager.jobsheet.show',
+              'uses'  => '_ManagerController@jobsheet_show'
+          ]);
+
+          Route::get('/{job_id}/edit', [
+              'as'    => 'manager.jobsheet.edit',
+              'uses'  => '_ManagerController@jobsheet_edit'
+          ]);
+
+          Route::put('/{job_id}/update', [
+              'as'    => 'manager.jobsheet.update',
+              'uses'  => '_ManagerController@jobsheet_update'
+          ]);
+
+          Route::put('/decline', [
+              'as'    => 'manager.jobsheet.decline',
+              'uses'  => '_ManagerController@jobsheet_decline'
+          ]);
+      });
+
         include "arz/arz_manager.php";
 
         // temp disable
@@ -478,6 +510,7 @@ Route::group(['middleware' => ['web','auth']], function ()
                 'uses'  => '_ManagerController@decline'
             ]);
         //}
+
     });
 
     Route::group(['prefix'=>'pajak'], function ()

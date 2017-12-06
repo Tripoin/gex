@@ -596,7 +596,7 @@ class _PayableController extends Controller
     {
         $jobsheets = RequestModel::where('status','approved')->where('type','!=','marketing')->select('jobsheet_id','type')->distinct()->get();
 
-        return view('payable.terms.index', compact('jobsheets'));
+        return view('request.payable.payable_terms', compact('jobsheets'));
     }
 
     /* Moved to ARZ */

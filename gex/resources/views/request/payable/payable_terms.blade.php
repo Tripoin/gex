@@ -19,9 +19,9 @@
 	                            </ul>
 
 	                            <!-- Tab panes -->
-															<a  href="#" class="btn btn-success btn-xs add-modal m-b-10" data-target="#createRole" data-toggle="modal" >
+															<!-- <a  href="#" class="btn btn-success btn-xs add-modal m-b-10" data-target="#createRole" data-toggle="modal" >
 																	<i class="fa fa-plus" data-toggle="tooltip" title="Add User"></i> Tambah Role
-															</a>
+															</a> -->
 	                            <div class="tab-content tab-content-1">
 	                                <div role="tabpanel" class="tab-pane active" id="jobsheetlist">
 	                                    <div class="table-responsive">

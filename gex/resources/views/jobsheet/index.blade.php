@@ -23,12 +23,12 @@
 	                                <div role="tabpanel" class="tab-pane active" id="jobsheetlist">
 	                                    <div class="table-responsive">
 	                                        <table class="table table-bordered table-body-condensed table-striped table-hover" id="myTables">
-	                                            <thead>  
+	                                            <thead>
 										          <tr>
-										          	<th>NO.</th>  
-										            <th>JOB</th>  
-										            <th>DATE</th>  
-										            <th>CUSTOMER</th>  
+										          	<th>NO.</th>
+										            <th>JOB</th>
+										            <th>DATE</th>
+										            <th>CUSTOMER</th>
 										            <th>MARKETING</th>
 										            <th>ORIGIN</th>
 										            <th>DESTINATION</th>
@@ -36,13 +36,13 @@
 										            <th>ETA</th>
 										            @if(Auth::user()->role != 'pajak' || Auth::user()->role != 'admin2')
 										            	<th>ACTION</th>
-										            @endif  
-										          </tr>  
+										            @endif
+										          </tr>
 										        </thead>
-										        <?php $no = 1; ?>  
-										        <tbody>  
+										        <?php $no = 1; ?>
+										        <tbody>
 										        	@foreach($jobsheets->sortByDesc('id') as $jobsheet)
-											            
+
 											            @php
 											            	$customer_id = App\MasterCustomer::find($jobsheet->customer_id);
 											            	$marketing_id = App\User::find($jobsheet->marketing_id);
@@ -52,18 +52,18 @@
 											            	$rec = App\Receivable::where('jobsheet_id', $jobsheet->id)->count();
 											            	$req = App\RequestModel::where('jobsheet_id', $jobsheet->id)->count();
 											            @endphp
-													    
+
 											            @if(Auth::user()->role == 'operation' || Auth::user()->role == 'admin')
 										            		<tr>
-													          	<td>{{ $no }}</td>  
+													          	<td>{{ $no }}</td>
 													            <td>
 													            	<a href="{{ route('operation.jobsheet.show', $jobsheet->id) }}">{{ $jobsheet->code }}</a>
-													            </td>  
+													            </td>
 													            <td>{{ $jobsheet->date }}</td>
-													            <td>{{ $customer_id->name }}</td>  
+													            <td>{{ $customer_id->name }}</td>
 													            <td>{{ $marketing_id->name }}</td>
 													            <td>{{ $poo_id->city }}</td>
-													            <td>{{ $pod_id->city }}</td>  
+													            <td>{{ $pod_id->city }}</td>
 													            <td>{{ $jobsheet->eta }}</td>
 													            <td>{{ $jobsheet->etd }}</td>
 
@@ -79,26 +79,26 @@
 													        </tr>
 										            	@elseif(Auth::user()->role == 'marketing' || Auth::user()->role == 'admin')
 										            		<tr>
-													          	<td>{{ $no }}</td>  
+													          	<td>{{ $no }}</td>
 													            <td>
 													            	@if($rec > 0)
 													            		<a href="{{ route('marketing.jobsheet.show', $jobsheet->id) }}">{{ $jobsheet->code }}</a>
 													            	@else
 													            		{{ $jobsheet->code }}<br>(receivable is empty)
 													            	@endif
-													            </td>  
+													            </td>
 													            <td>{{ $jobsheet->date }}</td>
-													            <td>{{ $customer_id->name }}</td>  
+													            <td>{{ $customer_id->name }}</td>
 													            <td>{{ $marketing_id->name }}</td>
 													            <td>{{ $poo_id->city }}</td>
-													            <td>{{ $pod_id->city }}</td>  
+													            <td>{{ $pod_id->city }}</td>
 													            <td>{{ $jobsheet->eta }}</td>
 													            <td>{{ $jobsheet->etd }}</td>
 													            <td class="text-center">
 													            	@if(Request::path() == 'marketing/jobsheet/index')
 													            		@if($jobsheet->status=='completed')
 														            		@if($cek < 1 && $req < 1)
-														            			<a href="{{ route('marketing.jobsheet.edit', $jobsheet->id) }}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>	
+														            			<a href="{{ route('marketing.jobsheet.edit', $jobsheet->id) }}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>
 														            		@endif
 														            	@else
 														            		<a href="{{ route('jobsheet.marketing.show', $jobsheet->id) }}" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-eye-open"></span></a>
@@ -108,15 +108,15 @@
 													        </tr>
 										            	@elseif(Auth::user()->role == 'pricing' || Auth::user()->role == 'admin')
 										            		<tr>
-													          	<td>{{ $no }}</td>  
+													          	<td>{{ $no }}</td>
 													            <td>
 													            	<a href="{{ route('pricing.jobsheet.show', $jobsheet->id) }}"></span>{{ $jobsheet->code }}</a>
-													            </td>  
+													            </td>
 													            <td>{{ $jobsheet->date }}</td>
-													            <td>{{ $customer_id->name }}</td>  
+													            <td>{{ $customer_id->name }}</td>
 													            <td>{{ $marketing_id->name }}</td>
 													            <td>{{ $poo_id->city }}</td>
-													            <td>{{ $pod_id->city }}</td>  
+													            <td>{{ $pod_id->city }}</td>
 													            <td>{{ $jobsheet->eta }}</td>
 													            <td>{{ $jobsheet->etd }}</td>
 													            <td class="text-center">
@@ -129,15 +129,15 @@
 													        </tr>
 										            	@elseif(Auth::user()->role == 'payable' || Auth::user()->role == 'admin')
 										            		<tr>
-													          	<td>{{ $no }}</td>  
+													          	<td>{{ $no }}</td>
 													            <td>
 													            	<a href="{{ route('payable.jobsheet.show', $jobsheet->id) }}"></span>{{ $jobsheet->code }}</a>
-													            </td>  
+													            </td>
 													            <td>{{ $jobsheet->date }}</td>
-													            <td>{{ $customer_id->name }}</td>  
+													            <td>{{ $customer_id->name }}</td>
 													            <td>{{ $marketing_id->name }}</td>
 													            <td>{{ $poo_id->city }}</td>
-													            <td>{{ $pod_id->city }}</td>  
+													            <td>{{ $pod_id->city }}</td>
 													            <td>{{ $jobsheet->eta }}</td>
 													            <td>{{ $jobsheet->etd }}</td>
 													            <td class="text-center">
@@ -148,25 +148,46 @@
 													            	@endif
 													            </td>
 													        </tr>
-										            	@elseif(Auth::user()->role == 'pajak' || Auth::user()->role == 'admin')
-													        <tr>
-													          	<td>{{ $no }}</td>  
+																	@elseif(Auth::user()->role == 'manager' || Auth::user()->role == 'admin')
+										            		<tr>
+													          	<td>{{ $no }}</td>
 													            <td>
-													            	<a href="{{ route('pajak.jobsheet.show', $jobsheet->id) }}"></span>{{ $jobsheet->code }}</a>
-													            </td>  
+													            	<a href="{{ route('manager.jobsheet.show', $jobsheet->id) }}"></span>{{ $jobsheet->code }}</a>
+													            </td>
 													            <td>{{ $jobsheet->date }}</td>
-													            <td>{{ $customer_id->name }}</td>  
+													            <td>{{ $customer_id->name }}</td>
 													            <td>{{ $marketing_id->name }}</td>
 													            <td>{{ $poo_id->city }}</td>
-													            <td>{{ $pod_id->city }}</td>  
+													            <td>{{ $pod_id->city }}</td>
+													            <td>{{ $jobsheet->eta }}</td>
+													            <td>{{ $jobsheet->etd }}</td>
+													            <td class="text-center">
+														            @if(Request::path() == 'manager/jobsheet/index')
+													            		@if($cek < 1 && $req < 1)
+														            		<a href="{{ route('manager.jobsheet.edit', $jobsheet->id) }}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>
+														            	@endif
+													            	@endif
+													            </td>
+													        </tr>
+										            	@elseif(Auth::user()->role == 'pajak' || Auth::user()->role == 'admin')
+													        <tr>
+													          	<td>{{ $no }}</td>
+													            <td>
+													            	<a href="{{ route('pajak.jobsheet.show', $jobsheet->id) }}"></span>{{ $jobsheet->code }}</a>
+													            </td>
+													            <td>{{ $jobsheet->date }}</td>
+													            <td>{{ $customer_id->name }}</td>
+													            <td>{{ $marketing_id->name }}</td>
+													            <td>{{ $poo_id->city }}</td>
+													            <td>{{ $pod_id->city }}</td>
 													            <td>{{ $jobsheet->eta }}</td>
 													            <td>{{ $jobsheet->etd }}</td>
 													        </tr>
 										            	@endif
-												        <?php $no++; ?>  
+												        <?php $no++; ?>
 
 										          	@endforeach
-										        </tbody>  
+										        </tbody>
 	                                        </table>
 	                                    </div>
 	                                </div>
@@ -183,7 +204,7 @@
 @endsection
 
 @section('script')
-	
+
 	<script>
 		$(document).ready(function(){
 		    $('#myTables').dataTable();

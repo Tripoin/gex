@@ -13,12 +13,12 @@
         <div class="form-group">
             <div class="col-sm-3">
                 <div class="input-group">
-                    
+
                     {!! Form::select(
-                        'document_id[]', 
+                        'document_id[]',
                         [''=>'']+App\MasterDocument::where('type', 'payable')->pluck('name','id')->all(),
-                        old('document_id'), 
-                        ['class'=>'form-control input-sm options_doc','id'=>'','required']) 
+                        old('document_id'),
+                        ['class'=>'form-control input-sm options_doc','id'=>'','required'])
                     !!}
 
                     <span class="input-group-btn"><button class="btn btn-primary btn-sm add-charge" type="button"><i class="fa fa-plus"></i></button></span>
@@ -26,27 +26,27 @@
                 <div class="error">{!! $errors->first('document_id') !!}</div>
             </div>
             <div class="col-sm-3">
-                
+
                 {!! Form::select(
-                    'vendor_id[]', 
+                    'vendor_id[]',
                     [''=>'']+App\MasterVendor::pluck('name','id')->all(),
-                    old('vendor_id'), 
-                    ['class'=>'form-control input-sm options_doc','id'=>'','required']) 
+                    old('vendor_id'),
+                    ['class'=>'form-control input-sm options_doc','id'=>'','required'])
                 !!}
             </div>
             <div class="col-sm-1">
-                
+
                 {!! Form::text('quantity[]',old('quantity'),['class'=>'form-control input-sm text-big','placeholder'=>'Quantity','required']) !!}
 
                 <label class="x-mark">X</label>
             </div>
             <div class="col-sm-2">
-                
+
                 {!! Form::select(
-                    'unit_id[]', 
+                    'unit_id[]',
                     [''=>'']+App\MasterUnit::pluck('name','id')->all(),
-                    old('unit_id'), 
-                    ['class'=>'form-control input-sm options_doc','id'=>'']) 
+                    old('unit_id'),
+                    ['class'=>'form-control input-sm options_doc','id'=>''])
                 !!}
 
             </div>
@@ -60,7 +60,7 @@
                 @else
                     {!! Form::text('pay_price[]',old('pay_price'), ['class'=>'form-control input-sm text-right text-money pricing-amount','placeholder'=>'Amount','disabled'=>'false']) !!}
                 @endif
-            </div>   
+            </div>
         </div>
     @elseif(Request::path() == 'operation/jobsheet/'.$jobsheet->id.'/edit')
         @if(count($payables) > 0)
@@ -76,9 +76,9 @@
             </div>
             @foreach($payables as $payable)
                 <div class="form-group">
-                    
+
                     {!! Form::hidden('payable_id[]', $payable->id) !!}
-                    
+
                     <div class="col-sm-3">
                         <div class="input-group">
                             <!-- <select name="document_id[]" class="form-control input-sm options_doc" id="pay_doc">
@@ -93,10 +93,10 @@
                             </select> -->
 
                             {!! Form::select(
-                                'document_id[]', 
+                                'document_id[]',
                                 [''=>'']+App\MasterDocument::where('type', 'payable')->pluck('name','id')->all(),
-                                $payable->document->id, 
-                                ['class'=>'form-control input-sm options_doc','id'=>'pay_doc']) 
+                                $payable->document->id,
+                                ['class'=>'form-control input-sm options_doc','id'=>'pay_doc'])
                             !!}
 
                             <span class="input-group-btn"><button class="btn btn-danger btn-sm empty-charge" type="button"><i class="fa fa-minus"></i></button></span>
@@ -107,10 +107,10 @@
                     </div>
                     <div class="col-sm-3">
                         {!! Form::select(
-                            'vendor_id[]', 
+                            'vendor_id[]',
                             [''=>'']+App\MasterVendor::pluck('name','id')->all(),
-                            $payable->vendor->id, 
-                            ['class'=>'form-control input-sm options_doc','id'=>'vdr']) 
+                            $payable->vendor->id,
+                            ['class'=>'form-control input-sm options_doc','id'=>'vdr'])
                         !!}
                     </div>
                     <div class="col-sm-1">
@@ -119,10 +119,10 @@
                     </div>
                     <div class="col-sm-2">
                         {!! Form::select(
-                            'unit_id[]', 
+                            'unit_id[]',
                             [''=>'']+App\MasterUnit::pluck('name','id')->all(),
-                            isset($payable->unit->id) ? $payable->unit->id:'', 
-                            ['class'=>'form-control input-sm options_doc','id'=>'unt']) 
+                            isset($payable->unit->id) ? $payable->unit->id:'',
+                            ['class'=>'form-control input-sm options_doc','id'=>'unt'])
                         !!}
                     </div>
                     <div class="col-sm-1">
@@ -155,12 +155,12 @@
 
                 <div class="col-sm-3">
                     <div class="input-group">
-                        
+
                         {!! Form::select(
-                            'document_id[]', 
+                            'document_id[]',
                             [''=>'']+App\MasterDocument::where('type', 'payable')->pluck('name','id')->all(),
-                            old('document_id'), 
-                            ['class'=>'form-control input-sm options_doc','id'=>'','required']) 
+                            old('document_id'),
+                            ['class'=>'form-control input-sm options_doc','id'=>'','required'])
                         !!}
 
                         <span class="input-group-btn"><button class="btn btn-primary btn-sm add-charge" type="button"><i class="fa fa-plus"></i></button></span>
@@ -168,27 +168,27 @@
                     <div class="error">{!! $errors->first('document_id') !!}</div>
                 </div>
                 <div class="col-sm-3">
-                    
+
                     {!! Form::select(
-                        'vendor_id[]', 
+                        'vendor_id[]',
                         [''=>'']+App\MasterVendor::pluck('name','id')->all(),
-                        old('vendor_id'), 
-                        ['class'=>'form-control input-sm options_doc','id'=>'','required']) 
+                        old('vendor_id'),
+                        ['class'=>'form-control input-sm options_doc','id'=>'','required'])
                     !!}
                 </div>
                 <div class="col-sm-1">
-                    
+
                     {!! Form::text('quantity[]',old('quantity'),['class'=>'form-control input-sm text-big','placeholder'=>'Quantity','required']) !!}
 
                     <label class="x-mark">X</label>
                 </div>
                 <div class="col-sm-2">
-                    
+
                     {!! Form::select(
-                        'unit_id[]', 
+                        'unit_id[]',
                         [''=>'']+App\MasterUnit::pluck('name','id')->all(),
-                        old('unit_id'), 
-                        ['class'=>'form-control input-sm options_doc','id'=>'']) 
+                        old('unit_id'),
+                        ['class'=>'form-control input-sm options_doc','id'=>''])
                     !!}
 
                 </div>
@@ -202,7 +202,7 @@
                     @else
                         {!! Form::text('pay_price[]',old('pay_price'), ['class'=>'form-control input-sm text-right text-money pricing-amount','placeholder'=>'Amount','disabled'=>'false']) !!}
                     @endif
-                </div>   
+                </div>
             </div>
         @endif
     @endif
@@ -258,14 +258,14 @@
                             </div>
                         </div>
                     @endforeach
-                        
+
                 </div>
             </div>
             <hr>
         </div>
     @endif
-@elseif(Auth::user()->role == 'payable' || Auth::user()->role == 'admin')
-    @if(Request::path() == 'payable/jobsheet/'.$jobsheet->id.'/edit')
+@elseif(Auth::user()->role == 'payable' || Auth::user()->role == 'admin' || Auth::user()->role == 'manager')
+    @if(Request::path() == 'payable/jobsheet/'.$jobsheet->id.'/edit' || Request::path() == 'manager/jobsheet/'.$jobsheet->id.'/edit')
         <div role="tabpanel" class="tab-pane no-padding-left no-padding-right no-padding-bottom active" id="tabcharges{{ $jobsheet->id }}">
             <div class="row charge-wrap">
                 <div class="col-sm-12 charge-group">
@@ -316,7 +316,7 @@
                             </div>
                         </div>
                     @endforeach
-                        
+
                 </div>
             </div>
             <hr>

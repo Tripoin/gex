@@ -1,5 +1,13 @@
 @if(Auth::user()->role == 'manager')
     <li class="sb-nav-child sb-has-child">
+        <a href="#jobsheet" data-toggle="collapse" class="collapsed"><i class="lnr lnr-book"></i> <span>Job Sheet</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+        <div id="jobsheet" class="collapse ">
+            <ul class="nav">
+                <li><a href="{{ route('manager.jobsheet.index') }}" class="">List</a></li>
+            </ul>
+        </div>
+    </li>
+    <li class="sb-nav-child sb-has-child">
         <a href="#approve" data-toggle="collapse" class="collapsed"><i class="lnr lnr-book"></i> <span>Approve</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
         <div id="approve" class="collapse ">
             <ul class="nav">

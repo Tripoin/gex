@@ -146,7 +146,7 @@
                 </tbody>
             </table>
         </div>
-    @elseif(Auth::user()->role == 'payable' || Auth::user()->role == 'admin')
+    @elseif(Auth::user()->role == 'payable' || Auth::user()->role == 'admin' || Auth::user()->role == 'manager')
         <div class="table-responsive">
             <table class="table table-bordered table-body-condensed table-striped no-margin">
                 <thead>
@@ -268,7 +268,7 @@
                                     </td>
                                 </tr>
                             @endif
-                        @elseif($user->role = 'payable')
+                        @elseif($user->role = 'payable' || $user->role = 'manager')
                             <tr>
                                 <td>{{ $i }}</td>
                                 <td>{{ $document->name }}</td>

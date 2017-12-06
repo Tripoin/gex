@@ -59,14 +59,14 @@
                     </td>
                 </tr>
             @endforeach
-            
+
             <tr>
                 <td colspan="7" class="text-center">TOTAL</td>
                 <td class="text-right "><strong>{{ number_format($rmb_total_price) }}</strong></td>
                 <td class="text-right ">
                     <strong>
                         @if(count($reimbursements)>0)
-                            {{ number_format(collect($rmb_total_price_usd)->sum('rmb_total')) }}    
+                            {{ number_format(collect($rmb_total_price_usd)->sum('rmb_total')) }}
                         @endif
                     </strong>
                 </td>
@@ -139,14 +139,14 @@
                     </td>
                 </tr>
             @endforeach
-            
+
             <tr>
                 <td colspan="7" class="text-center">TOTAL</td>
                 <td class="text-right "><strong>{{ number_format($rmb_total_price) }}</strong></td>
                 <td class="text-right ">
                     <strong>
                         @if(count($reimbursements)>0)
-                            {{ number_format(collect($rmb_total_price_usd)->sum('rmb_total')) }}    
+                            {{ number_format(collect($rmb_total_price_usd)->sum('rmb_total')) }}
                         @endif
                     </strong>
                 </td>
@@ -160,7 +160,7 @@
             </tr>
         </tbody>
     </table>
-@elseif(Auth::user()->role == 'payable' || Auth::user()->role == 'admin')
+@elseif(Auth::user()->role == 'payable' || Auth::user()->role == 'admin' || Auth::user()->role == 'manager')
     <table class="table table-bordered table-striped table-condensed charge-table no-margin">
         <thead>
             <tr>
@@ -219,14 +219,14 @@
                     </td>
                 </tr>
             @endforeach
-            
+
             <tr>
                 <td colspan="7" class="text-center">TOTAL</td>
                 <td class="text-right "><strong>{{ number_format($rmb_total_price) }}</strong></td>
                 <td class="text-right ">
                     <strong>
                         @if(count($reimbursements)>0)
-                            {{ number_format(collect($rmb_total_price_usd)->sum('rmb_total')) }}    
+                            {{ number_format(collect($rmb_total_price_usd)->sum('rmb_total')) }}
                         @endif
                     </strong>
                 </td>

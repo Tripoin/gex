@@ -1,14 +1,14 @@
-<div class="modal fade" id="declineModal{{ $jobsheet->id }}" 
-     tabindex="-1" role="dialog" 
+<div class="modal fade" id="declineModal{{ $jobsheet->id }}"
+     tabindex="-1" role="dialog"
      aria-labelledby="favoritesModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" 
-                data-dismiss="modal" 
+                <button type="button" class="close"
+                data-dismiss="modal"
                 aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" 
+                <h4 class="modal-title"
                 id="favoritesModalLabel">Decline Jobsheet {{ $jobsheet->code }}</h4>
             </div>
 
@@ -16,7 +16,7 @@
                 {!! Form::open(['url' => route('marketing.jobsheet.decline'), 'method' => 'post','class'=>'form-horizontal']) !!}
 
                     <div class="modal-body">
-                        
+
                         {{ csrf_field() }}
                         {!! Form::hidden('jobsheet_id', $jobsheet->id) !!}
                         {!! Form::hidden('sender_id', Auth::user()->id) !!}
@@ -86,8 +86,29 @@
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 {!! Form::close() !!}
+                @elseif(Auth::user()->role == 'manager')
+                    {!! Form::open(['url' => route('manager.jobsheet.decline'), 'method' => 'post','class'=>'']) !!}
+                        <div class="modal-body">
+                            {!! Form::hidden('jobsheet_id', $jobsheet->id) !!}
+                            {!! Form::hidden('sender_id', Auth::user()->id) !!}
+                            <div class="form-group">
+                                <label for="">RETURN TO</label>
+                                <select name="receiver" id="" class="form-control input-sm">
+                                    <option value="{{ $jobsheet->operation_id }}">OPERATION</option>
+                                    <option value="{{ $jobsheet->marketing_id }}">MARKETING</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="">NOTE</label>
+                                <textarea name="note" type="text" class="form-control" id="" placeholder="Input Note"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    {!! Form::close() !!}                
             @endif
-            
+
         </div>
     </div>
 </div>
