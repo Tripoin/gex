@@ -21,6 +21,7 @@
                         <span class="notif">{{ $notif }}</span>
                     @endif
                 </li>
+                <li><a href="{{ route('request.payable.payable_terms') }}">Payable Terms</a></li>
                 <li><a href="{{ route('payable.listpayment') }}">Payable List</a></li>
                 <hr>
                 <li><a href="{{ route('payable.payment.rc') }}" class="">RC Payment</a>

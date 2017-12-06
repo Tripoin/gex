@@ -7,7 +7,7 @@
         $poo_id = App\MasterPort::find($jobsheet->poo_id);
         $pod_id = App\MasterPort::find($jobsheet->pod_id);
     @endphp
-    
+
     <div class="col-sm-4">
         <table class="table table-borderless table-condensed detail-table no-margin">
             <tr>
@@ -122,7 +122,7 @@
 <div class="row">
     <div class="col-sm-12">
         @if(Auth::user()->role == 'marketing')
-            
+
             <!-- RECEIVABLE / REIMBURSEMENT / RC -->
             <div role="tabpanel">
                 <ul class="nav nav-tabs nav-tabs-3" role="tablist">
@@ -149,7 +149,7 @@
                     @endif
                 </div>
             </div>
-        @elseif(Auth::user()->role == 'pricing' || Auth::user()->role == 'payable')
+        @elseif(Auth::user()->role == 'pricing' || Auth::user()->role == 'payable' || Auth::user()->role == 'manager')
              <!-- DETAIL OF CHARGE / REIMBURSEMENT / RC -->
             <div role="tabpanel">
                 <ul class="nav nav-tabs nav-tabs-3" role="tablist">
@@ -186,6 +186,17 @@
                         @include('_form.reimbursement')
                         @include('_form.rc')
                     @endif
+
+                    <!-- MANAGER ROLE -->
+                    @if(Request::path() == 'manager/jobsheet/'.$jobsheet->id.'/show')
+                        @include('_show.payable')
+                        @include('_show.reimbursement')
+                        @include('_show.rc')
+                    @elseif(Request::path() == 'manager/jobsheet/'.$jobsheet->id.'/edit')
+                        @include('_form.payable')
+                        @include('_form.reimbursement')
+                        @include('_form.rc')
+                    @endif
                 </div>
             </div>
         @else
@@ -197,7 +208,7 @@
 <BR><BR>
 <div class="text-right">
 
-    @php 
+    @php
         $cek = App\Invoice::where('jobsheet_id', $jobsheet->id)->count();
         $req = App\RequestModel::where('jobsheet_id', $jobsheet->id)->count();
         $rec = App\Receivable::where('jobsheet_id', $jobsheet->id)->count();
@@ -247,6 +258,19 @@
             <a href="{{ route('payable.jobsheet.index') }}" class="btn btn-success">Back</a>
             @if($req < 1 && $cek < 1)
                 <a href="{{ route('payable.jobsheet.edit', $jobsheet->id) }}" class="btn btn-warning">Edit</a>
+            @endif
+        @endif
+    @elseif(Auth::user()->role == 'manager')
+        @if(Request::path() == 'manager/jobsheet/'.$jobsheet->id.'/edit')
+            <a href="{{ route('manager.jobsheet.index') }}" class="btn btn-success">Back</a>
+            @if($req < 1 && $cek < 1)
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#declineModal{{ $jobsheet->id }}">Decline</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            @endif
+        @elseif(Request::path() == 'manager/jobsheet/'.$jobsheet->id.'/show')
+            <a href="{{ route('manager.jobsheet.index') }}" class="btn btn-success">Back</a>
+            @if($req < 1 && $cek < 1)
+                <a href="{{ route('manager.jobsheet.edit', $jobsheet->id) }}" class="btn btn-warning">Edit</a>
             @endif
         @endif
     @endif

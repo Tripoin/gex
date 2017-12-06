@@ -9,7 +9,7 @@
                 <div class="col-sm-12">
 
                     {!! Form::hidden('rmb_marketing_id[]', 0) !!}
-                    
+
                     <div class="form-group">
                         <div class="col-sm-3">
                             <label>TERMS OF PAYMENT</label><br />
@@ -29,19 +29,19 @@
                 </div>
                 <div class="col-sm-12 charge-group">
                     <div class="form-group">
-                        
+
                         {!! Form::hidden('rmb_id[][]', 0) !!}
-                        
+
                         <div class="col-sm-3">
                             <label>DETAIL</label><br />
                             <div class="input-group">
                                 {!! Form::select(
-                                    'rmb_document_id[0][]', 
+                                    'rmb_document_id[0][]',
                                     [''=>'']+App\MasterDocument::pluck('name','id')->all(),
-                                    null, 
-                                    ['class'=>'form-control input-sm input-reimburse','id'=>'']) 
+                                    null,
+                                    ['class'=>'form-control input-sm input-reimburse','id'=>''])
                                 !!}
-                                
+
                                 <span class="input-group-btn"><button class="btn btn-sm btn-primary add-reimburse" type="button"><i class="fa fa-plus"></i></button></span>
                             </div>
                         </div>
@@ -89,11 +89,11 @@
             @foreach($reimbursements->unique('rmb_marketing_id') as $rmb)
                 <div class="terms-group term-reimbursement" index="{{ $index }}">
                     <div class="row">
-                        
+
                         <div class="col-sm-12">
 
                             {!! Form::hidden('rmb_marketing_id[]', $rmb->rmb_marketing_id) !!}
-                            
+
                             <div class="form-group">
                                 <div class="col-sm-3">
                                     <label>TERMS OF PAYMENT</label><br />
@@ -137,13 +137,13 @@
                                 </div>
                             </div>
                             @foreach($reimbursements->where('rmb_marketing_id', $rmb->rmb_marketing->id) as $doc)
-                                
+
                                 {!! Form::hidden('rmb_id['.$index.'][]', $doc->id) !!}
-                                
+
                                 <div class="form-group">
                                     <div class="col-sm-3">
                                         <div class="input-group">
-                                           
+
                                             {!! Form::select('rmb_document_id['.$index.'][]', [''=>'']+App\MasterDocument::pluck('name','id')->all(),$doc->rmb_document_id, ['class'=>'form-control input-sm document', 'id'=>'rmb_documents']) !!}
                                             <span class="input-group-btn">
                                                 <button class="btn btn-sm btn-danger empty-reimburse" type="button"><i class="fa fa-minus"></i></button>
@@ -183,7 +183,7 @@
                                         <input type="text" class="form-control input-sm text-right subtotal" id="rmb_total" value="{{ number_format($total) }}" readonly param="1">
                                     </div>
                                 </div>
-                            @endforeach  
+                            @endforeach
                         </div>
                     </div>
                 </div><br>
@@ -196,7 +196,7 @@
                     <div class="col-sm-12">
 
                         {!! Form::hidden('rmb_marketing_id[]', 0) !!}
-                        
+
                         <div class="form-group">
                             <div class="col-sm-3">
                                 <label>TERMS OF PAYMENT</label><br />
@@ -216,17 +216,17 @@
                     </div>
                     <div class="col-sm-12 charge-group">
                         <div class="form-group">
-                            
+
                             {!! Form::hidden('rmb_id[][]', 0) !!}
-                            
+
                             <div class="col-sm-3">
                                 <label>DETAIL</label><br />
                                 <div class="input-group">
                                     {!! Form::select(
-                                        'rmb_document_id[0][]', 
+                                        'rmb_document_id[0][]',
                                         [''=>'']+App\MasterDocument::pluck('name','id')->all(),
-                                        null, 
-                                        ['class'=>'form-control input-sm input-reimburse','id'=>'']) 
+                                        null,
+                                        ['class'=>'form-control input-sm input-reimburse','id'=>''])
                                     !!}
                                     <span class="input-group-btn"><button class="btn btn-sm btn-primary add-reimburse" type="button"><i class="fa fa-plus"></i></button></span>
                                 </div>
@@ -293,13 +293,13 @@
         <div class="terms-group term-reimbursement" index="0">
             <div class="row">
             @foreach($reimbursements->unique('rmb_marketing_id') as $rmb)
-                
+
                 <div class="col-sm-12">
                     <div class="form-group">
                         <div class="col-sm-3">
                             <label>TERMS OF PAYMENT</label>
                             {!! Form::select('rmb_term_id[]', [''=>'']+App\MasterTerm::pluck('name','id')->all(),$rmb->rmb_marketing->term_id, ['class'=>'form-control input-sm input-reimburse term','disabled']) !!}
-                        </div>  
+                        </div>
                         <div class="col-sm-2">
                             <label>BILL TO</label>
                             {!! Form::select('rmb_customer_id[]', [''=>'']+App\MasterCustomer::pluck('name','id')->all(),$rmb->rmb_marketing->customer_id, ['class'=>'form-control input-sm input-reimburse','disabled']) !!}
@@ -337,7 +337,7 @@
                         <div class="form-group">
                             <div class="col-sm-3">
                                 <div class="input-group">
-                                   
+
                                     {!! Form::select('rmb_document_id[]', [''=>'']+App\MasterDocument::pluck('name','id')->all(),$rmbs->rmb_document_id, ['class'=>'form-control input-sm document', 'id'=>'','disabled']) !!}
                                     <!-- <span class="input-group-btn">
                                         <button class="btn btn-sm btn-danger rem-reimburse" type="button"><i class="fa fa-minus"></i></button>
@@ -387,13 +387,13 @@
         <div class="terms-group term-reimbursement" index="0">
             <div class="row">
             @foreach($reimbursements->unique('rmb_marketing_id') as $rmb)
-                
+
                 <div class="col-sm-12">
                     <div class="form-group">
                         <div class="col-sm-3">
                             <label>TERMS OF PAYMENT</label>
                             {!! Form::select('rmb_term_id[]', [''=>'']+App\MasterTerm::pluck('name','id')->all(),$rmb->rmb_marketing->term_id, ['class'=>'form-control input-sm input-reimburse term','disabled']) !!}
-                        </div>  
+                        </div>
                         <div class="col-sm-2">
                             <label>BILL TO</label>
                             {!! Form::select('rmb_customer_id[]', [''=>'']+App\MasterCustomer::pluck('name','id')->all(),$rmb->rmb_marketing->customer_id, ['class'=>'form-control input-sm input-reimburse','disabled']) !!}
@@ -431,7 +431,7 @@
                         <div class="form-group">
                             <div class="col-sm-3">
                                 <div class="input-group">
-                                   
+
                                     {!! Form::select('rmb_document_id[]', [''=>'']+App\MasterDocument::pluck('name','id')->all(),$rmbs->rmb_document_id, ['class'=>'form-control input-sm document', 'id'=>'','disabled']) !!}
                                     <!-- <span class="input-group-btn">
                                         <button class="btn btn-sm btn-danger rem-reimburse" type="button"><i class="fa fa-minus"></i></button>
@@ -478,19 +478,19 @@
             </div>
         </div>
     @endif
-@elseif(Auth::user()->role == 'payable' || Auth::user()->role == 'admin')
-    @if(Request::path() == 'payable/jobsheet/'.$jobsheet->id.'/edit')
+@elseif(Auth::user()->role == 'payable' || Auth::user()->role == 'admin' || Auth::user()->role = 'manager')
+    @if(Request::path() == 'payable/jobsheet/'.$jobsheet->id.'/edit' || Request::path() == 'manager/jobsheet/'.$jobsheet->id.'/edit')
         @if(count($reimbursements) > 0)
             <div class="terms-group term-reimbursement" index="0">
                 <div class="row">
                 @foreach($reimbursements->unique('rmb_marketing_id') as $rmb)
-                    
+
                     <div class="col-sm-12">
                         <div class="form-group">
                             <div class="col-sm-3">
                                 <label>TERMS OF PAYMENT</label>
                                 {!! Form::select('rmb_term_id[]', [''=>'']+App\MasterTerm::pluck('name','id')->all(),$rmb->rmb_marketing->term_id, ['class'=>'form-control input-sm input-reimburse term','disabled']) !!}
-                            </div>  
+                            </div>
                             <div class="col-sm-2">
                                 <label>BILL TO</label>
                                 {!! Form::select('rmb_customer_id[]', [''=>'']+App\MasterCustomer::pluck('name','id')->all(),$rmb->rmb_marketing->customer_id, ['class'=>'form-control input-sm input-reimburse','disabled']) !!}
@@ -528,7 +528,7 @@
                             <div class="form-group">
                                 <div class="col-sm-3">
                                     <div class="input-group">
-                                       
+
                                         {!! Form::select('rmb_document_id[]', [''=>'']+App\MasterDocument::pluck('name','id')->all(),$rmbs->rmb_document_id, ['class'=>'form-control input-sm document', 'id'=>'','disabled']) !!}
                                         <!-- <span class="input-group-btn">
                                             <button class="btn btn-sm btn-danger rem-reimburse" type="button"><i class="fa fa-minus"></i></button>
@@ -601,10 +601,10 @@
                                 <label>DETAIL</label><br />
                                 <div class="input-group">
                                     {!! Form::select(
-                                        'rmb_document_id[0][]', 
+                                        'rmb_document_id[0][]',
                                         [''=>'']+App\MasterDocument::pluck('name','id')->all(),
-                                        null, 
-                                        ['class'=>'form-control input-sm input-reimburse','id'=>'']) 
+                                        null,
+                                        ['class'=>'form-control input-sm input-reimburse','id'=>''])
                                     !!}
                                     <span class="input-group-btn"><button class="btn btn-sm btn-primary add-reimburse" type="button"><i class="fa fa-plus"></i></button></span>
                                 </div>

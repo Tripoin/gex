@@ -3,23 +3,25 @@
 @section('title', 'Job Sheet')
 
 @section('content')
-<div class="main-content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <!-- JOB SHEET -->
-                <div class="panel">
-                    <div class="panel-body no-padding">
-                        <div role="tabpanel">
-                            <!-- Nav tabs -->
-                            <ul class="nav nav-tabs nav-tabs-1" role="tablist">
-                                <li role="presentation" class="active">
-                                    <a href="#jobsheetlist" aria-controls="jobsheetlist" role="tab" data-toggle="tab">JOBSHEET INDEX</a>
-                                </li>
-                            </ul>
-
+	<div class="main-content">
+	    <div class="container-fluid">
+	        <div class="row">
+	            <div class="col-md-12">
+	                <!-- JOB SHEET -->
+	                <div class="panel">
+	                    <div class="panel-body no-padding">
+	                        <div role="tabpanel">
+	                            <!-- Nav tabs -->
+	                            <ul class="nav nav-tabs nav-tabs-1" role="tablist">
+	                                <li role="presentation" class="active">
+	                                    <a href="#jobsheetlist" aria-controls="jobsheetlist" role="tab" data-toggle="tab">PAYMENT TERMS INDEX</a>
+	                                </li>
+	                            </ul>
 
 	                            <!-- Tab panes -->
+															<!-- <a  href="#" class="btn btn-success btn-xs add-modal m-b-10" data-target="#createRole" data-toggle="modal" >
+																	<i class="fa fa-plus" data-toggle="tooltip" title="Add User"></i> Tambah Role
+															</a> -->
 	                            <div class="tab-content tab-content-1">
 	                                <div role="tabpanel" class="tab-pane active" id="jobsheetlist">
 	                                    <div class="table-responsive">
@@ -27,14 +29,14 @@
 	                                            <thead>
 										          <tr>
 										          	<th>NO.</th>
-										            <th>JOB</th>
-										            <th>DATE</th>
 										            <th>CUSTOMER</th>
-										            <th>MARKETING</th>
-										            <th>ORIGIN</th>
-										            <th>DESTINATION</th>
-										            <th>ETD</th>
-										            <th>ETA</th>
+																<th>INVOICE DATE</th>
+										            <th>INVOICE NUMBER</th>
+										            <th>RESPONSIBLE</th>
+										            <th>PAYMENT DUE DATE</th>
+										            <th>PAYMENT METHOD</th>
+																<th>SOURCE DOCUMENT</th>
+										            <th>CURRENCY</th>
 										            @if(Auth::user()->role != 'pajak' || Auth::user()->role != 'admin2')
 										            	<th>ACTION</th>
 										            @endif
@@ -149,27 +151,6 @@
 													            	@endif
 													            </td>
 													        </tr>
-																	@elseif(Auth::user()->role == 'manager' || Auth::user()->role == 'admin')
-										            		<tr>
-													          	<td>{{ $no }}</td>
-													            <td>
-													            	<a href="{{ route('manager.jobsheet.show', $jobsheet->id) }}"></span>{{ $jobsheet->code }}</a>
-													            </td>
-													            <td>{{ $jobsheet->date }}</td>
-													            <td>{{ $customer_id->name }}</td>
-													            <td>{{ $marketing_id->name }}</td>
-													            <td>{{ $poo_id->city }}</td>
-													            <td>{{ $pod_id->city }}</td>
-													            <td>{{ $jobsheet->eta }}</td>
-													            <td>{{ $jobsheet->etd }}</td>
-													            <td class="text-center">
-														            @if(Request::path() == 'manager/jobsheet/index')
-													            		@if($cek < 1 && $req < 1)
-														            		<a href="{{ route('manager.jobsheet.edit', $jobsheet->id) }}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>
-														            	@endif
-													            	@endif
-													            </td>
-													        </tr>
 										            	@elseif(Auth::user()->role == 'pajak' || Auth::user()->role == 'admin')
 													        <tr>
 													          	<td>{{ $no }}</td>
@@ -205,7 +186,6 @@
 @endsection
 
 @section('script')
-
 
 	<script>
 		$(document).ready(function(){

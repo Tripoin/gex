@@ -70,7 +70,7 @@ class _OperationController extends Controller
             $convert_date = Carbon::createFromFormat('d-m-Y', $request->get('tanggal'));
             $convert_etd = Carbon::createFromFormat('d-m-Y', $request->get('etd'));
             $convert_eta = Carbon::createFromFormat('d-m-Y', $request->get('eta'));
-            
+
             $port = MasterPort::find($request->get('poo_id'));
             $generate_code = $convert_date->format('m').'/'.$convert_date->format('Y').'/'.$port->nick_name;
 
@@ -102,17 +102,17 @@ class _OperationController extends Controller
                 $jobsheet->code         = '0'.$jobsheet->id.'/'.$generate_code;
             } else {
                 $jobsheet->code         = $jobsheet->id.'/'.$generate_code;
-            } 
+            }
             $jobsheet->save();
 
             if ($jobsheet) {
-                
+
                 // =======================Simpan Reference baru=======================
                 $ref_no = $request->get('ref_no');
                 $doc_id = $request->get('ref_document_id');
 
-                for ($i=0; $i < count($ref_no); $i++) 
-                { 
+                for ($i=0; $i < count($ref_no); $i++)
+                {
                     if(!empty($ref_no[$i]) && !empty($doc_id[$i]))
                     {
                         Reference::create([
@@ -129,8 +129,8 @@ class _OperationController extends Controller
                 $unit   = $request->get('unit_id');
                 $quanty = $request->get('quantity');
 
-                for ($j=0; $j < count($charge); $j++) 
-                { 
+                for ($j=0; $j < count($charge); $j++)
+                {
                     if(!empty($charge[$j]))
                     {
                         $payable = new Payable();
@@ -219,9 +219,9 @@ class _OperationController extends Controller
         $jobsheet->etd          = $convert_etd->toDateString();
         $jobsheet->eta          = $convert_eta->toDateString();
 
-        if ($jobsheet->status == 'revisi-invoice' || 
+        if ($jobsheet->status == 'revisi-invoice' ||
             $jobsheet->status == 'revisi-pricing' ||
-            $jobsheet->status == 'revisi-payable') 
+            $jobsheet->status == 'revisi-payable')
         {
             $cek_rec = Receivable::where('jobsheet_id', $jobsheet->id)->count();
             if ($cek_rec < 1) {
@@ -232,22 +232,22 @@ class _OperationController extends Controller
         }elseif ($jobsheet->status == 'revisi-marketing') {
             $jobsheet->status       = 'uncompleted';
         }
-        
+
         $jobsheet->save();
 
-        if ($jobsheet) 
+        if ($jobsheet)
         {
             //==============UPDATE REFERENCE============
             $ref_id = $request->reference_id;
             $ref_no = $request->get('ref_no');
             $doc_id = $request->get('ref_document_id');
-            
-            for ($i=0; $i < count($ref_no); $i++) 
-            { 
+
+            for ($i=0; $i < count($ref_no); $i++)
+            {
                 $reference = Reference::find($ref_id[$i]);
-                
+
                 if ($ref_id[$i] != 0) {
-                    if (!empty($ref_no[$i]) && !empty($doc_id[$i])) 
+                    if (!empty($ref_no[$i]) && !empty($doc_id[$i]))
                     {
                         $reference->jobsheet_id = $jobsheet->id;
                         $reference->document_id = $doc_id[$i];
@@ -266,7 +266,7 @@ class _OperationController extends Controller
                         ]);
                     }
                 }
-                
+
             }
 
             //==============UPDATE PAYABLE============
@@ -277,12 +277,12 @@ class _OperationController extends Controller
             $quanty = $request->get('quantity');
             // $pay_currency = $request->get('pay_currency');
 
-            for ($j=0; $j < count($charge); $j++) 
-            { 
-                if ($pay_id[$j] != 0) 
+            for ($j=0; $j < count($charge); $j++)
+            {
+                if ($pay_id[$j] != 0)
                 {
                     $payable = Payable::find($pay_id[$j]);
-                    
+
                     if(!empty($charge[$j]) && !empty($vendor[$j]))
                     {
                         $payable->user_id       = Auth::user()->id;
@@ -293,7 +293,7 @@ class _OperationController extends Controller
                         $payable->quantity      = $quanty[$j];
                         // $payable->currency      = $pay_currency[$j];
                         $payable->save();
-                    
+
                     }else{
                         $payable->delete();
                     }

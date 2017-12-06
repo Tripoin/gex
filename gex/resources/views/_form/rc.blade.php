@@ -22,9 +22,9 @@
                             <label>DETAIL</label>
                             <div class="input-group">
                                 {!! Form::select(
-                                    'rc_document_id[]', 
-                                    [''=>'']+App\MasterDocument::pluck('name','id')->all(),old('rc_document_id'), 
-                                    ['class'=>'form-control input-sm binding_charge','id'=>'']) 
+                                    'rc_document_id[]',
+                                    [''=>'']+App\MasterDocument::pluck('name','id')->all(),old('rc_document_id'),
+                                    ['class'=>'form-control input-sm binding_charge','id'=>''])
                                 !!}
                                 <span class="input-group-btn"><button class="btn btn-sm btn-primary add-rc" type="button"><i class="fa fa-plus"></i></button></span>
                             </div>
@@ -95,9 +95,9 @@
                         </div>
                         @foreach($rcs as $rc)
                             <div class="form-group">
-                                
+
                                 {!! Form::hidden('rc_id[]', $rc->id) !!}
-                                
+
                                 <div class="col-sm-1 no-padding-right">
                                     <div class="input-group">
                                         {!! Form::select('rc_type[]', [
@@ -108,9 +108,9 @@
                                 <div class="col-sm-2">
                                     <div class="input-group">
                                         {!! Form::select(
-                                            'rc_document_id[]', 
-                                            [''=>'']+App\MasterDocument::pluck('name','id')->all(),$rc->rc_document_id, 
-                                            ['class'=>'form-control input-sm binding_charge','id'=>'rc_documents']) 
+                                            'rc_document_id[]',
+                                            [''=>'']+App\MasterDocument::pluck('name','id')->all(),$rc->rc_document_id,
+                                            ['class'=>'form-control input-sm binding_charge','id'=>'rc_documents'])
                                         !!}
                                         <span class="input-group-btn"><button class="btn btn-sm btn-danger empty-rc" type="button"><i class="fa fa-minus"></i></button></span>
                                         <span class="input-group-btn"><button class="btn btn-sm btn-primary add-rc" type="button"><i class="fa fa-plus"></i></button></span>
@@ -165,9 +165,9 @@
                                 <label>DETAIL</label>
                                 <div class="input-group">
                                     {!! Form::select(
-                                        'rc_document_id[]', 
-                                        [''=>'']+App\MasterDocument::pluck('name','id')->all(),old('rc_document_id'), 
-                                        ['class'=>'form-control input-sm binding_charge','id'=>'']) 
+                                        'rc_document_id[]',
+                                        [''=>'']+App\MasterDocument::pluck('name','id')->all(),old('rc_document_id'),
+                                        ['class'=>'form-control input-sm binding_charge','id'=>''])
                                     !!}
                                     <span class="input-group-btn"><button class="btn btn-sm btn-primary add-rc" type="button"><i class="fa fa-plus"></i></button></span>
                                 </div>
@@ -213,8 +213,8 @@
     @elseif(Auth::user()->role == 'pricing' || Auth::user()->role == 'admin')
         @if(Request::path() == 'pricing/jobsheet/'.$jobsheet->id.'/create')
 
-            @php 
-                $rcs = App\RC::where('jobsheet_id',$jobsheet->id)->where('rc_type','pricing')->get(); 
+            @php
+                $rcs = App\RC::where('jobsheet_id',$jobsheet->id)->where('rc_type','pricing')->get();
             @endphp
 
             @if(count($rcs) > 0)
@@ -250,7 +250,7 @@
                             @if($rc->rc_type = 'pricing')
 
                                 {!! Form::hidden('rc_id[]', $rc->id) !!}
-                                
+
                                 <div class="form-group">
                                     <div class="col-sm-1 no-padding-right">
                                         <div class="input-group">
@@ -262,9 +262,9 @@
                                     <div class="col-sm-2">
                                         <div class="input-group">
                                             {!! Form::select(
-                                                'rc_document_id[]', 
-                                                [''=>'']+App\MasterDocument::pluck('name','id')->all(),$rc->rc_document_id, 
-                                                ['class'=>'form-control input-sm binding_charge','id'=>'']) 
+                                                'rc_document_id[]',
+                                                [''=>'']+App\MasterDocument::pluck('name','id')->all(),$rc->rc_document_id,
+                                                ['class'=>'form-control input-sm binding_charge','id'=>''])
                                             !!}
                                             <span class="input-group-btn"><button class="btn btn-sm btn-primary add-rc" type="button"><i class="fa fa-plus"></i></button></span>
                                         </div>
@@ -306,9 +306,9 @@
                                 <div class="col-sm-3">
                                     <div class="input-group">
                                         {!! Form::select(
-                                            'rc_document_id[]', 
-                                            [''=>'']+App\MasterDocument::pluck('name','id')->all(),null, 
-                                            ['class'=>'form-control input-sm binding_charge','id'=>'']) 
+                                            'rc_document_id[]',
+                                            [''=>'']+App\MasterDocument::pluck('name','id')->all(),null,
+                                            ['class'=>'form-control input-sm binding_charge','id'=>''])
                                         !!}
                                         <span class="input-group-btn"><button class="btn btn-sm btn-primary add-rc" type="button"><i class="fa fa-plus"></i></button></span>
                                     </div>
@@ -341,8 +341,8 @@
                                     <input type="text" class="form-control input-sm text-right rc_subtotal"  value="0.00" readonly param="1">
                                 </div>
                             @endif
-                            
-                            
+
+
                         </div>
                     </div>
                 </div><hr>
@@ -365,9 +365,9 @@
                                 <label>DETAIL</label>
                                 <div class="input-group">
                                     {!! Form::select(
-                                        'rc_document_id[]', 
-                                        [''=>'']+App\MasterDocument::pluck('name','id')->all(),old('rc_document_id'), 
-                                        ['class'=>'form-control input-sm binding_charge','id'=>'']) 
+                                        'rc_document_id[]',
+                                        [''=>'']+App\MasterDocument::pluck('name','id')->all(),old('rc_document_id'),
+                                        ['class'=>'form-control input-sm binding_charge','id'=>''])
                                     !!}
                                     <span class="input-group-btn"><button class="btn btn-sm btn-primary add-rc" type="button"><i class="fa fa-plus"></i></button></span>
                                 </div>
@@ -408,7 +408,7 @@
                         </div>
                     </div>
                 </div><hr>
-                 
+
                 <!--<div class="row total-group">
                     <div class="col-md-4 col-md-offset-8">
                         <table class="table table-borderless charge-table no-margin">
@@ -427,11 +427,11 @@
                 </div> -->
             @endif
         @endif
-    @elseif(Auth::user()->role == 'payable' || Auth::user()->role == 'admin')
-        @if(Request::path() == 'payable/jobsheet/'.$jobsheet->id.'/edit')
+    @elseif(Auth::user()->role == 'payable' || Auth::user()->role == 'admin' || Auth::user()->role == 'manager')
+        @if(Request::path() == 'payable/jobsheet/'.$jobsheet->id.'/edit' || Request::path() == 'manager/jobsheet/'.$jobsheet->id.'/edit')
 
-            @php 
-                $rcs = App\RC::where('jobsheet_id',$jobsheet->id)->get(); 
+            @php
+                $rcs = App\RC::where('jobsheet_id',$jobsheet->id)->get();
             @endphp
 
             @if(count($rcs) > 0)
@@ -465,7 +465,7 @@
                         </div>
                         @foreach($rcs as $rc)
                             {!! Form::hidden('rc_id[]', $rc->id) !!}
-                            
+
                             <div class="form-group">
                                 <div class="col-sm-1 no-padding-right">
                                     <div class="input-group">
@@ -478,9 +478,9 @@
                                 <div class="col-sm-2">
                                     <div class="input-group">
                                         {!! Form::select(
-                                            'rc_document_id[]', 
-                                            [''=>'']+App\MasterDocument::pluck('name','id')->all(),$rc->rc_document_id, 
-                                            ['class'=>'form-control input-sm binding_charge','id'=>'']) 
+                                            'rc_document_id[]',
+                                            [''=>'']+App\MasterDocument::pluck('name','id')->all(),$rc->rc_document_id,
+                                            ['class'=>'form-control input-sm binding_charge','id'=>''])
                                         !!}
                                         <span class="input-group-btn"><button class="btn btn-sm btn-primary add-rc" type="button"><i class="fa fa-plus"></i></button></span>
                                     </div>
@@ -521,9 +521,9 @@
                                 <div class="col-sm-3">
                                     <div class="input-group">
                                         {!! Form::select(
-                                            'rc_document_id[]', 
-                                            [''=>'']+App\MasterDocument::pluck('name','id')->all(),null, 
-                                            ['class'=>'form-control input-sm binding_charge','id'=>'']) 
+                                            'rc_document_id[]',
+                                            [''=>'']+App\MasterDocument::pluck('name','id')->all(),null,
+                                            ['class'=>'form-control input-sm binding_charge','id'=>''])
                                         !!}
                                         <span class="input-group-btn"><button class="btn btn-sm btn-primary add-rc" type="button"><i class="fa fa-plus"></i></button></span>
                                     </div>
@@ -556,8 +556,8 @@
                                     <input type="text" class="form-control input-sm text-right rc_subtotal"  value="0.00" readonly param="1">
                                 </div>
                             @endif
-                            
-                            
+
+
                         </div>
                     </div>
                 </div><hr>
@@ -580,9 +580,9 @@
                                 <label>DETAIL</label>
                                 <div class="input-group">
                                     {!! Form::select(
-                                        'rc_document_id[]', 
-                                        [''=>'']+App\MasterDocument::pluck('name','id')->all(),old('rc_document_id'), 
-                                        ['class'=>'form-control input-sm binding_charge','id'=>'']) 
+                                        'rc_document_id[]',
+                                        [''=>'']+App\MasterDocument::pluck('name','id')->all(),old('rc_document_id'),
+                                        ['class'=>'form-control input-sm binding_charge','id'=>''])
                                     !!}
                                     <span class="input-group-btn"><button class="btn btn-sm btn-primary add-rc" type="button"><i class="fa fa-plus"></i></button></span>
                                 </div>
@@ -623,7 +623,7 @@
                         </div>
                     </div>
                 </div><hr>
-                 
+
                 <!--<div class="row total-group">
                     <div class="col-md-4 col-md-offset-8">
                         <table class="table table-borderless charge-table no-margin">
@@ -643,5 +643,5 @@
             @endif
         @endif
     @endif
-    
+
 </div>
