@@ -181,7 +181,7 @@
                         @include('_show.payable')
                         @include('_show.reimbursement')
                         @include('_show.rc')
-                    @elseif(Request::path() == 'payable/jobsheet/'.$jobsheet->id.'/edit')
+                    @elseif(Request::path() == 'payable/jobsheet/'.$jobsheet->id.'/edit' || Request::path() == 'payable/jobsheet/'.$jobsheet->id.'/edit_createnew')
                         @include('_form.payable')
                         @include('_form.reimbursement')
                         @include('_form.rc')
@@ -237,7 +237,7 @@
             @endif
         @endif
     @elseif(Auth::user()->role == 'payable')
-        @if(Request::path() == 'payable/jobsheet/'.$jobsheet->id.'/edit')
+        @if(Request::path() == 'payable/jobsheet/'.$jobsheet->id.'/edit' || Request::path() == 'payable/jobsheet/'.$jobsheet->id.'/edit_createnew')
             <a href="{{ route('payable.jobsheet.index') }}" class="btn btn-success">Back</a>
             @if($req < 1 && $cek < 1)
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#declineModal{{ $jobsheet->id }}">Decline</button>

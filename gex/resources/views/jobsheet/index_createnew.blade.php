@@ -69,7 +69,7 @@
 
                                                     @if(Auth::user()->role != 'pajak' || Auth::user()->role != 'admin2')
                                                     <td class="text-center">
-                                                        @if(Request::path() == 'operation/jobsheet/index')
+                                                        @if(Request::path() == 'operation/jobsheet/create_new')
                                                         @if($cek < 1 && $req < 1)
                                                         <a href="{{ route('operation.jobsheet.edit', $jobsheet->id) }}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>
                                                         @endif
@@ -141,11 +141,7 @@
                                                     <td>{{ $jobsheet->eta }}</td>
                                                     <td>{{ $jobsheet->etd }}</td>
                                                     <td class="text-center">
-                                                        @if(Request::path() == 'payable/jobsheet/index')
-                                                        @if($cek < 1 && $req < 1)
-                                                        <a href="{{ route('payable.jobsheet.edit', $jobsheet->id) }}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>
-                                                        @endif
-                                                        @endif
+                                                        <a href="{{ route('payable.jobsheet.edit_createnew', $jobsheet->id) }}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>
                                                     </td>
                                                 </tr>
                                                 @elseif(Auth::user()->role == 'pajak' || Auth::user()->role == 'admin')

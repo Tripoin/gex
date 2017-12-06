@@ -223,10 +223,16 @@ Route::group(['middleware' => ['web','auth']], function ()
     {
         Route::group(['prefix'=>'jobsheet'], function ()
         {
+            //START ROUTE JOBSHEET CREATE NEW
             Route::get('/create_new', [
                 'as'    => 'payable.jobsheet.create_new',
                 'uses'  => '_PayableController@jobsheet_createnew'
             ]);
+            Route::get('/{job_id}/edit_createnew', [
+                'as'    => 'payable.jobsheet.edit_createnew',
+                'uses'  => '_PayableController@jobsheet_edit_createnew'
+            ]);
+            //END ROUTE JOBSHEET CREATE NEW
             Route::get('/index', [
                 'as'    => 'payable.jobsheet.index',
                 'uses'  => '_PayableController@jobsheet_index'

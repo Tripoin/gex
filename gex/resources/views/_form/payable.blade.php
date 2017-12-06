@@ -265,7 +265,7 @@
         </div>
     @endif
 @elseif(Auth::user()->role == 'payable' || Auth::user()->role == 'admin')
-    @if(Request::path() == 'payable/jobsheet/'.$jobsheet->id.'/edit')
+    @if(Request::path() == 'payable/jobsheet/'.$jobsheet->id.'/edit' || Request::path() == 'payable/jobsheet/'.$jobsheet->id.'/edit_createnew')
         <div role="tabpanel" class="tab-pane no-padding-left no-padding-right no-padding-bottom active" id="tabcharges{{ $jobsheet->id }}">
             <div class="row charge-wrap">
                 <div class="col-sm-12 charge-group">
