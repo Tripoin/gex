@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Arz;
 use App\Http\Controllers\_ManagerController;
 
 use App\Helpers\ArzReport;
+use Illuminate\Support\Facades\Input;
 use Yajra\Datatables\Facades\Datatables;
 use Illuminate\Http\Request;
 use App\RequestModel;
 
 class _ArzManagerController extends _ManagerController
 {
-    public function request_approvable(Request $request, Datatables $datatables)
+    public function request_payable(Request $request, Datatables $datatables)
     {
         $query = RequestModel::where('status', 'approvable');
         $title = 'Approvable Charges';
@@ -54,25 +55,44 @@ class _ArzManagerController extends _ManagerController
         return view('request.manager.index', compact('requests','title','isApproved','dateForm','dateTo'));
     }
 
-    public function request_submit_approved(Request $request)
+    public function request_submit_payable(Request $request)
     {
-        try {
-            $this->validate($request,[
-                'request_ids'  => 'required',
-            ]);
-            if( $requestIds = $request->get('request_ids') ){
-                $requestIds = implode(",",$requestIds);
-                \DB::update("UPDATE requests SET status='approved' WHERE id IN (".$requestIds.")");
+        if(Input::get('create-approved')) {
+            try {
+                $this->validate($request,[
+                    'request_ids'  => 'required',
+                ]);
+                if( $requestIds = $request->get('request_ids') ){
+                    $requestIds = implode(",",$requestIds);
+                    \DB::update("UPDATE requests SET status='approved' WHERE id IN (".$requestIds.")");
 
-                $request->session()->put('message-success', 'Success Submit Request to Approved');
+                    $request->session()->put('message-success', 'Success Submit Request to Approved');
+                }
             }
-        }
-        catch (\Exception $e) {
-            $request->session()->put('message-error','Something Wrong');
-            return redirect()->route('manager.request.approvable', ['date_from'=>$request->get('date_from'), 'date_to'=>$request->get('date_to')]);
+            catch (\Exception $e) {
+                $request->session()->put('message-error','Something Wrong');
+                return redirect()->route('manager.request.approvereq.payable', ['date_from'=>$request->get('date_from'), 'date_to'=>$request->get('date_to')]);
+            }
+            return redirect()->route('manager.request.approvereq.payable', ['date_from'=>$request->get('date_from'), 'date_to'=>$request->get('date_to')]);
+        }elseif(Input::get('cancel-approved')) {
+            try {
+                $this->validate($request,[
+                    'request_ids'  => 'required',
+                ]);
+                if( $requestIds = $request->get('request_ids') ){
+                    $requestIds = implode(",",$requestIds);
+                    \DB::update("UPDATE requests SET status='requested' WHERE id IN (".$requestIds.")");
+                    $request->session()->put('message-succes', 'Request has been decline');
+                }
+
+            }
+            catch (\Exception $e) {
+                $request->session()->put('message-error','Something Wrong');
+                return redirect()->route('manager.request.approvereq.payable', ['date_from'=>$request->get('date_from'), 'date_to'=>$request->get('date_to')]);
+            }
+            return redirect()->route('manager.request.approvereq.payable', ['date_from'=>$request->get('date_from'), 'date_to'=>$request->get('date_to')]);
         }
 
-        return redirect()->route('manager.request.approvable', ['date_from'=>$request->get('date_from'), 'date_to'=>$request->get('date_to')]);
     }
 
 

@@ -50,7 +50,7 @@
 											<div style="margin-bottom: 10px !important;"></div>
 
 											@if( isset( $isApprovable ) && $isApprovable )
-												{!! Form::open(['url'=>route('manager.request.submit-approved'), 'method' => 'POST','class'=>'form-inline bulk_grid_form']) !!}
+												{!! Form::open(['url'=>route('manager.request.submit-approved-payable'), 'method' => 'POST','class'=>'form-inline bulk_grid_form']) !!}
 											@endif
 													<table class="table table-bordered table-body-condensed table-striped table-hover" id="@if( isset( $isApprovable ) && $isApprovable ){!! 'requestedTable' !!}@else{!! 'myTables' !!}@endif">
 														<thead>
@@ -152,10 +152,14 @@
 													</table>
 
 											@if( isset( $isApprovable ) && $isApprovable )
-												<input type="hidden" id="request_status" name="request_status" value="approved">
-												<button id="create-approved" class="btn btn-success btn-xs add-modal m-b-10 hidden">
-													<i class="fa fa-plus" data-toggle="tooltip" title="Approved from Selected Request"></i> Approved
-												</button>
+													{{--<input type="hidden" id="request_status" name="request_status" value="approved">--}}
+													{{--<input type="hidden" id="request_rev" name="request_rev" value="decline">--}}
+													<input type="submit" id="create-approved" name="create-approved" value="Approved" class="btn btn-success btn-xs add-modal m-b-10 hidden">
+													<input type="submit" id="cancel-approved" name="cancel-approved" value="Decline" class="btn btn-danger btn-xs add-modal m-b-10 hidden">
+													{{--<button id="cancel-approved" class="btn btn-danger btn-xs add-modal m-b-10 hidden" data-toggle="modal" data-target="#declineModal{{ $request->id }}">
+														<i class="fa fa-minus" data-toggle="tooltip" title="Cancel from Selected Request"></i> Decline
+													</button>--}}
+
 												{!! Form::close() !!}
 											@endif
 										</div>
@@ -181,9 +185,12 @@
 			function toggleShowBtnCreate(){
 				var requestSelectedIds = body.find('.request_ids:checked');
 				var requestBtnCreate = $('#create-approved');
+				var requestBtnDec = $('#cancel-approved');
 				requestBtnCreate.addClass('hidden');
+				requestBtnDec.addClass('hidden');
 				if( requestSelectedIds.length > 0 ){
 					requestBtnCreate.removeClass('hidden');
+					requestBtnDec.removeClass('hidden');
 				}
 			}
 
