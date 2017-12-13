@@ -430,6 +430,24 @@ Route::group(['middleware' => ['web','auth']], function ()
 
         include "arz/arz_manager.php";
 
+            Route::get('/jobsheet', [
+                'as' => 'manager.listjobsheet',
+                'uses' => '_ManagerController@listJobsheet'
+            ]);
+
+        Route::group([ 'prefix'=>'jobsheet'], function ()
+        {
+            Route::get('/{id}/edit', [
+                'as'    => 'manager.jobsheet.edit',
+                'uses'  => '_ManagerController@jobsheet_edit'
+            ]);
+
+            Route::put('/{id}/update', [
+                'as'    => 'manager.jobsheet.update',
+                'uses'  => '_ManagerController@jobsheet_update'
+            ]);
+        });
+
         // temp disable
         //if( 1==2 ) {
             /* Approve Payable */
