@@ -3,9 +3,9 @@
 Route::group([ 'prefix'=>'request/v2'], function ()
 {
 
-    Route::get('/approvable', [
-        'as'    => 'manager.request.approvable',
-        'uses'  => 'Arz\_ArzManagerController@request_approvable'
+    Route::get('/approvereq-payable', [
+        'as'    => 'manager.request.approvereq.payable',
+        'uses'  => 'Arz\_ArzManagerController@request_payable'
     ]);
 
     Route::get('/approved', [
@@ -13,9 +13,14 @@ Route::group([ 'prefix'=>'request/v2'], function ()
         'uses'  => 'Arz\_ArzManagerController@request_approved'
     ]);
 
-    Route::post('/submit-approved', [
-        'as'    => 'manager.request.submit-approved',
-        'uses'  => 'Arz\_ArzManagerController@request_submit_approved'
+    Route::post('/submit-payable', [
+        'as'    => 'manager.request.submit',
+        'uses'  => 'Arz\_ArzManagerController@req_submit'
+    ]);
+
+    Route::post('/submit-approved-payable', [
+        'as'    => 'manager.request.submit-approved-payable',
+        'uses'  => 'Arz\_ArzManagerController@request_submit_payable'
     ]);
 
 });
