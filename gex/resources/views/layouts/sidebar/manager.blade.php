@@ -27,7 +27,8 @@
         <a href="#request" data-toggle="collapse" class="collapsed"><i class="lnr lnr-book"></i> <span>REQUEST</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
         <div id="request" class="collapse ">
             <ul class="nav">
-                <li><a href="{{ route('manager.request.approvable')}}" class="">Approval</a></li>
+                <li><a href="{{ route('manager.request.approvereq.payable')}}" class="">Payable</a></li>
+                <li><a href="{{-- route('manager.request.approvable')--}}" class="">Receiveble</a></li>
             </ul>
         </div>
     </li>
