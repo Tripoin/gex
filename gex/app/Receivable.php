@@ -44,4 +44,9 @@ class Receivable extends Model
     {
     	return $this->belongsTo('App\MasterDocument');
     }
+
+    public function rec_months()
+    {
+    	return $this->belongsTo('App\MasterMonths');
+    }
 }

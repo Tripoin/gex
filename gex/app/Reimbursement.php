@@ -55,4 +55,9 @@ class Reimbursement extends Model
     {
         return $this->belongsTo('App\MasterVendor');
     }
+
+    public function months()
+    {
+        return $this->belongsTo('App\MasterMonths');
+    }
 }
