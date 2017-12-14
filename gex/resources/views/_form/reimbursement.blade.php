@@ -13,7 +13,7 @@
                     <div class="form-group">
                         <div class="col-sm-3">
                             <label>TERMS OF PAYMENT</label><br />
-                            {!! Form::select('rmb_term_id[]', [''=>'']+App\MasterTerm::pluck('name','id')->all(),old('rmb_term_id'), ['class'=>'form-control input-sm input-reimburse term','id'=>'rmb_terms']) !!}
+                            {!! Form::select('rmb_term_id[]', [''=>'']+App\MasterMonths::pluck('name','id')->all(),old('rmb_term_id'), ['class'=>'form-control input-sm input-reimburse term','id'=>'rmb_terms']) !!}
                         </div>
                         <div class="col-sm-3">
                             <label>BILL TO</label><br />
@@ -97,7 +97,7 @@
                             <div class="form-group">
                                 <div class="col-sm-3">
                                     <label>TERMS OF PAYMENT</label><br />
-                                    {!! Form::select('rmb_term_id[]', [''=>'']+App\MasterTerm::pluck('name','id')->all(),$rmb->rmb_marketing->term_id, ['class'=>'form-control input-sm input-reimburse term','id'=>'rmb_terms']) !!}
+                                    {!! Form::select('rmb_term_id[]', [''=>'']+App\MasterMonths::pluck('name','id')->all(),$rmb->rmb_marketing->term_id, ['class'=>'form-control input-sm input-reimburse term','id'=>'rmb_terms']) !!}
                                 </div>
                                 <div class="col-sm-3">
                                     <label>BILL TO</label><br />
@@ -200,7 +200,7 @@
                         <div class="form-group">
                             <div class="col-sm-3">
                                 <label>TERMS OF PAYMENT</label><br />
-                                {!! Form::select('rmb_term_id[]', [''=>'']+App\MasterTerm::pluck('name','id')->all(),old('rmb_term_id'), ['class'=>'form-control input-sm input-reimburse term','id'=>'']) !!}
+                                {!! Form::select('rmb_term_id[]', [''=>'']+App\MasterMonths::pluck('name','id')->all(),old('rmb_term_id'), ['class'=>'form-control input-sm input-reimburse term','id'=>'']) !!}
                             </div>
                             <div class="col-sm-3">
                                 <label>BILL TO</label><br />
@@ -298,7 +298,7 @@
                     <div class="form-group">
                         <div class="col-sm-3">
                             <label>TERMS OF PAYMENT</label>
-                            {!! Form::select('rmb_term_id[]', [''=>'']+App\MasterTerm::pluck('name','id')->all(),$rmb->rmb_marketing->term_id, ['class'=>'form-control input-sm input-reimburse term','disabled']) !!}
+                            {!! Form::select('rmb_term_id[]', [''=>'']+App\MasterMonths::pluck('name','id')->all(),$rmb->rmb_marketing->term_id, ['class'=>'form-control input-sm input-reimburse term','disabled']) !!}
                         </div>
                         <div class="col-sm-2">
                             <label>BILL TO</label>
@@ -392,7 +392,7 @@
                     <div class="form-group">
                         <div class="col-sm-3">
                             <label>TERMS OF PAYMENT</label>
-                            {!! Form::select('rmb_term_id[]', [''=>'']+App\MasterTerm::pluck('name','id')->all(),$rmb->rmb_marketing->term_id, ['class'=>'form-control input-sm input-reimburse term','disabled']) !!}
+                            {!! Form::select('rmb_term_id[]', [''=>'']+App\MasterMonths::pluck('name','id')->all(),$rmb->rmb_marketing->term_id, ['class'=>'form-control input-sm input-reimburse term','disabled']) !!}
                         </div>
                         <div class="col-sm-2">
                             <label>BILL TO</label>
@@ -489,7 +489,7 @@
                         <div class="form-group">
                             <div class="col-sm-3">
                                 <label>TERMS OF PAYMENT</label>
-                                {!! Form::select('rmb_term_id[]', [''=>'']+App\MasterTerm::pluck('name','id')->all(),$rmb->rmb_marketing->term_id, ['class'=>'form-control input-sm input-reimburse term','disabled']) !!}
+                                {!! Form::select('rmb_term_id[]', [''=>'']+App\MasterMonths::pluck('name','id')->all(),$rmb->rmb_marketing->term_id, ['class'=>'form-control input-sm input-reimburse term','disabled']) !!}
                             </div>
                             <div class="col-sm-2">
                                 <label>BILL TO</label>
@@ -581,7 +581,7 @@
                         <div class="form-group">
                             <div class="col-sm-3">
                                 <label>TERMS OF PAYMENT</label><br />
-                                {!! Form::select('rmb_term_id[]', [''=>'']+App\MasterTerm::pluck('name','id')->all(),old('rmb_term_id'), ['class'=>'form-control input-sm input-reimburse term','id'=>'']) !!}
+                                {!! Form::select('rmb_term_id[]', [''=>'']+App\MasterMonths::pluck('name','id')->all(),old('rmb_term_id'), ['class'=>'form-control input-sm input-reimburse term','id'=>'']) !!}
                             </div>
                             <div class="col-sm-3">
                                 <label>BILL TO</label><br />
