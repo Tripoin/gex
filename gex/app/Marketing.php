@@ -12,7 +12,7 @@ class Marketing extends Model
 {
 	protected $table = 'marketings';
     protected $fillable = ['jobsheet_id','term_id', 'customer_id'];
-	
+
     public function receivables()
     {
         return $this->hasMany('App\Receivable');
@@ -31,5 +31,10 @@ class Marketing extends Model
     public function term()
     {
         return $this->belongsTo('App\MasterTerm');
+    }
+
+		public function months()
+    {
+        return $this->belongsTo('App\MasterMonths');
     }
 }
