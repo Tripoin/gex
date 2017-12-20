@@ -28,7 +28,7 @@
             <div class="form-group @if($errors->first('poo_id')) has-error @endif">
                 <label class="control-label col-sm-4">ORIGIN*</label>
                 <div class="col-sm-8">
-                    <select class="form-control input-sm options_doc" id="poo" required="required">
+                    <select class="form-control input-sm options_doc" id="poo" name="poo_id" required="required">
                         <option value=""></option>
                         @php
                         $listPort = App\MasterPort::where('type','origin')->get();
@@ -50,7 +50,7 @@
             <div class="form-group  @if($errors->first('pod_id')) has-error @endif">
                 <label class="control-label col-sm-4">DESTINATION*</label>
                 <div class="col-sm-8">
-                    <select class="form-control input-sm options_doc" id="poo" required="required">
+                    <select class="form-control input-sm options_doc" id="pod" name="pod_id" required="required">
                         <option value=""></option>
                         @php
                         $listPort = App\MasterPort::where('type','destination')->get();

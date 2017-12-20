@@ -221,6 +221,7 @@ class _InvoiceController extends Controller
         $document = InvoiceDocument::where('invoice_id', $invoice->id)->get();
         $max = $arr->max('rec_total');
         $tot = $arr->sum('rec_total');
+        libxml_use_internal_errors(true);
         $pdf = PDF::loadView('invoice.printgexpdf', compact('invoice','receivable','max','tot','document'))->setPaper('a4', 'portrait');
         return $pdf->stream('invoice-receivable.pdf');
     }
@@ -378,6 +379,7 @@ class _InvoiceController extends Controller
         $document = InvoiceDocument::where('invoice_id', $invoice->id)->get();
         $max = $arr->max('rmb_total');
         $tot = $arr->sum('rmb_total');
+        libxml_use_internal_errors(true);
         $pdf = PDF::loadView('invoice.printgexrmbpdf', compact('invoice','receivable','max','tot','document'))->setPaper('a4', 'portrait');
         return $pdf->stream('invoice-reimbursement.pdf');
     }

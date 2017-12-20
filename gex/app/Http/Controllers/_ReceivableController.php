@@ -69,6 +69,7 @@ class _ReceivableController extends Controller
     }
 
     public function pdf(Request $request, $id, $type) {
+        libxml_use_internal_errors(true);
     	if($type == 'receivable') {
     		$invoice = Invoice::find($id);
 	        $arr = Receivable::where('rec_invoice_id', $invoice->id)->get();
@@ -76,6 +77,7 @@ class _ReceivableController extends Controller
 	        $document = InvoiceDocument::where('invoice_id', $invoice->id)->get();
 	        $max = $arr->max('rec_total');
 	        $tot = $arr->sum('rec_total');
+                
 	        $pdf = PDF::loadView('invoice.printgexpdf', compact('invoice','receivable','max','tot','document'))->setPaper('a4', 'portrait');
 	        return $pdf->stream('invoice-receivable.pdf');
     	} elseif ($type == 'reimbursement') {

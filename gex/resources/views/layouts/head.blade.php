@@ -28,5 +28,5 @@
 <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('img/gex3.png') }}">
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
-<script src="httpss://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <link href="{{ asset('select2/dist/css/select2.css') }}" rel="stylesheet"/>
