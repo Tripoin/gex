@@ -52,6 +52,21 @@
 											            	$cek = App\Invoice::where('jobsheet_id', $jobsheet->id)->count();
 											            	$rec = App\Receivable::where('jobsheet_id', $jobsheet->id)->count();
 											            	$req = App\RequestModel::where('jobsheet_id', $jobsheet->id)->count();
+                                                                                                        $jobsheetDate = '';
+                                                                                                        if(isset($jobsheet->date)){
+                                                                                                            $jobsheetDate = $jobsheet->date;
+                                                                                                        }
+                                                                                                        
+                                                                                                        $marketingName = '';
+                                                                                                        if(isset($marketing_id->name)){
+                                                                                                            $marketingName = $marketing_id->name;
+                                                                                                        }
+                                                                                                        
+                                                                                                        $customerName = '';
+                                                                                                        if(isset($customer_id->name)){
+                                                                                                            $customerName = $customer_id->name;
+                                                                                                        }
+                                                                                                        
 											            @endphp
 
 											            @if(Auth::user()->role == 'operation' || Auth::user()->role == 'admin')
@@ -60,9 +75,9 @@
 													            <td>
 													            	<a href="{{ route('operation.jobsheet.show', $jobsheet->id) }}">{{ $jobsheet->code }}</a>
 													            </td>
-													            <td>{{ $jobsheet->date }}</td>
-													            <td>{{ $customer_id->name }}</td>
-													            <td>{{ $marketing_id->name }}</td>
+													            <td>{{ $jobsheetDate }}</td>
+													            <td>{{ $customerName }}</td>
+													            <td>{{ $marketingName }}</td>
 													            <td>{{ $poo_id->city }}</td>
 													            <td>{{ $pod_id->city }}</td>
 													            <td>{{ $jobsheet->eta }}</td>
